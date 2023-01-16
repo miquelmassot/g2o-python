@@ -1,0 +1,13 @@
+[build-system]
+requires = [
+  "setuptools==59.2.0", "wheel==0.37.0", "cmake>=3.1", "pip",
+  "scikit-build>=0.13.2",
+  "numpy==1.13.3; python_version=='3.6' and platform_machine != 'aarch64' and platform_machine != 'arm64'",
+  "numpy==1.17.0; python_version=='3.7' and platform_machine != 'aarch64' and platform_machine != 'arm64'",
+  "numpy==1.17.3; python_version=='3.8' and platform_machine != 'aarch64' and platform_machine != 'arm64'",
+  "numpy==1.19.3; python_version<='3.9' and sys_platform == 'linux' and platform_machine == 'aarch64'",
+  "numpy==1.21.0; python_version<='3.9' and sys_platform == 'darwin' and platform_machine == 'arm64'",
+  "numpy==1.19.3; python_version=='3.9' and platform_machine != 'aarch64' and platform_machine != 'arm64'",
+  "numpy==1.21.2; python_version>='3.10'",
+  "numpy==1.21.4; python_version>='3.10' and platform_system=='Darwin'"
+]
