@@ -1,5 +1,4 @@
-name:
-  - base
+name: base
 channels:
   - defaults
   - conda-forge
@@ -48,3 +47,5 @@ dependencies:
   - wheel=0.37.1=pyhd3eb1b0_0
   - xz=5.2.8=h5eee18b_0
   - zlib=1.2.13=h5eee18b_0
+  - pip:
+      - g2o-python==0.0.2
