@@ -1,3 +1,5 @@
+name:
+  - base
 channels:
   - defaults
   - conda-forge
