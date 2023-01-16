@@ -20,6 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml
+        conda activate base
     - name: Install the package
       run: |
         pip install -U --user .
