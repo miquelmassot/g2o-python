@@ -15,7 +15,7 @@ dependencies:
   - conda-content-trust=0.1.3=py310h06a4308_0
   - conda-package-handling=1.9.0=py310h5eee18b_1
   - cryptography=38.0.1=py310h9ce1e76_0
-  - eigen=3.4.0=h7f8727e_0
+  - eigen=3.3.7=hd09550d_1
   - idna=3.4=py310h06a4308_0
   - ld_impl_linux-64=2.38=h1181459_1
   - libffi=3.4.2=h6a678d5_6
@@ -47,5 +47,3 @@ dependencies:
   - wheel=0.37.1=pyhd3eb1b0_0
   - xz=5.2.8=h5eee18b_0
   - zlib=1.2.13=h5eee18b_0
-  - pip:
-      - g2o-python==0.0.2
