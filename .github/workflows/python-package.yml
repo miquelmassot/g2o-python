@@ -2,26 +2,22 @@ name: Python Package
 on: [push]
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
-
+  default-shell:
+    name: Default shell
+    runs-on: "ubuntu-latest"
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
-      run: |
-        conda init bash
-        conda env update --file environment.yml
-        conda activate base
-    - name: Install the package
-      run: |
-        pip install -U --user .
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: base
+          environment-file: environment.yml
+      - run: conda info
+      - run: conda list
+      - run: conda config --show
+      - name: Install the package
+        run: |
+          pip install -U --user .
