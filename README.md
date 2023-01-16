@@ -1,3 +1,4 @@
+[![Python Package](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml/badge.svg)](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml)
 [![PyPI - Implementation](https://img.shields.io/pypi/v/g2o-python)](https://pypi.org/project/g2o-python/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/g2o-python)](https://pypi.org/project/g2o-python/)
 
