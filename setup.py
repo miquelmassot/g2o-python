@@ -1,11 +1,10 @@
 import io
 import os
 import os.path
-import sys
-import sysconfig
-import platform
 import skbuild
 from skbuild import cmaker
+
+# Compiled library is at g2o/lib/g2opy.cpython-310-x86_64-linux-gnu.so
 
 
 def main():
@@ -40,6 +39,8 @@ def main():
         "-DG2O_BUILD_APPS=OFF",
         "-DG2O_BUILD_PYTHON=ON",
         "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
+        "-Dg2o_LIBRARY_OUTPUT_DIRECTORY=../setuptools/lib.linux-x86_64-3.10/.",
+        "-Dg2o_RUNTIME_OUTPUT_DIRECTORY=./lib",
     ]
 
     # https://github.com/scikit-build/scikit-build/issues/479
@@ -57,7 +58,6 @@ def main():
         description="Wrapper package for G2O python bindings.",
         long_description=io.open("README.md", encoding="utf-8").read(),
         long_description_content_type="text/markdown",
-        # packages=["g2o", "g2opy"],
         maintainer="Miquel Massot",
         ext_modules=EmptyListWithLength(),
         install_requires=install_requires,
