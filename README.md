@@ -3,7 +3,7 @@
 [![CondaForge](https://img.shields.io/conda/v/conda-forge/g2o-python.svg)](https://anaconda.org/conda-forge/g2o-python)
 [![downloads](https://pepy.tech/badge/g2o-python/month)](https://pepy.tech/project/g2o-python)
 [![versions](https://img.shields.io/pypi/pyversions/g2o-python)](https://pypi.org/project/g2o-python/)
-[![license](https://img.shields.io/github/license/g2o-python/g2o-python.svg)](https://github.com/miquelmassot/g2o-python/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/miquelmassot/g2o-python.svg)](https://github.com/miquelmassot/g2o-python/blob/main/LICENSE)
 
 
 
