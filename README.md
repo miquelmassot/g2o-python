@@ -1,6 +1,10 @@
-[![Python Package](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml/badge.svg)](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml)
-[![PyPI - Implementation](https://img.shields.io/pypi/v/g2o-python)](https://pypi.org/project/g2o-python/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/g2o-python)](https://pypi.org/project/g2o-python/)
+[![CI](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml/badge.svg)](https://github.com/miquelmassot/g2o-python/actions/workflows/python-package.yml)
+[![PyPI](https://img.shields.io/pypi/v/g2o-python)](https://pypi.org/project/g2o-python/)
+[![CondaForge](https://img.shields.io/conda/v/conda-forge/g2o-python.svg)](https://anaconda.org/conda-forge/g2o-python)
+[![downloads](https://pepy.tech/badge/g2o-python/month)](https://pepy.tech/project/g2o-python)
+[![versions](https://img.shields.io/pypi/pyversions/g2o-python)](https://pypi.org/project/g2o-python/)
+[![license](https://img.shields.io/github/license/g2o-python/g2o-python.svg)](https://github.com/pydantic/g2o-python/blob/main/LICENSE)
+
 
 
 # g2o-python
