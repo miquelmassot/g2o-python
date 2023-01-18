@@ -12,5 +12,11 @@ requires = [
   "numpy==1.21.4; python_version>='3.10' and platform_system=='Darwin'"
 ]
 
-[tool.cibuildwheel]
+[tool.cibuildwheel.macos]
+before-build= "brew install eigen"
+
+[tool.cibuildwheel.windows]
+before-build = "choco install eigen"
+
+[tool.cibuildwheel.linux]
 before-build = "yum install eigen3-devel"

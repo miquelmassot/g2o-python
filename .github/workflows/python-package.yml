@@ -17,9 +17,6 @@ jobs:
         with:
           activate-environment: base
           environment-file: environment.yml
-      - run: conda info
-      - run: conda list
-      - run: conda config --show
       - name: Install the package
         run: |
           pip install -U --user .
