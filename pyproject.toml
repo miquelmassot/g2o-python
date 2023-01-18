@@ -11,3 +11,6 @@ requires = [
   "numpy==1.21.2; python_version>='3.10'",
   "numpy==1.21.4; python_version>='3.10' and platform_system=='Darwin'"
 ]
+
+[tool.cibuildwheel]
+before-build = "yum install eigen3-devel"
