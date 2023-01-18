@@ -22,6 +22,37 @@ def main():
         'numpy>=1.21.4; python_version>="3.10" and platform_system=="Darwin"',
     ]
 
+    # Fix g2o/CMakeLists.txt file, remove the lines
+    #   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})
+    #   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})
+    #   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${g2o_RUNTIME_OUTPUT_DIRECTORY})
+    with open(os.path.join(cmake_source_dir, "CMakeLists.txt"), "r") as file:
+        filedata = file.read()
+        filedata = filedata.replace(
+            "set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})",
+            "",
+        )
+        filedata = filedata.replace(
+            "set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})",
+            "",
+        )
+        filedata = filedata.replace(
+            "set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${g2o_RUNTIME_OUTPUT_DIRECTORY})",
+            "",
+        )
+    with open(os.path.join(cmake_source_dir, "CMakeLists.txt"), "w") as file:
+        file.write(filedata)
+
+    # And in g2o/python/CMakeLists.txt, add
+    #   install(TARGETS g2opy LIBRARY DESTINATION g2opy)
+    # at the end of the file
+    with open(os.path.join(cmake_source_dir, "python", "CMakeLists.txt"), "r") as file:
+        filedata = file.read()
+    if "install(TARGETS g2opy LIBRARY DESTINATION g2opy)" not in filedata:
+        filedata += "\ninstall(TARGETS g2opy LIBRARY DESTINATION g2opy)"
+    with open(os.path.join(cmake_source_dir, "python", "CMakeLists.txt"), "w") as file:
+        file.write(filedata)
+
     cmake_args = [
         # See g2o/CMakeLists.txt for options and defaults
         "-DBUILD_SHARED_LIBS=OFF",
@@ -30,8 +61,6 @@ def main():
         "-DG2O_BUILD_APPS=OFF",
         "-DG2O_BUILD_PYTHON=ON",
         "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
-        "-Dg2o_LIBRARY_OUTPUT_DIRECTORY=../setuptools/lib.linux-x86_64-3.10/.",
-        "-Dg2o_RUNTIME_OUTPUT_DIRECTORY=./lib",
     ]
 
     # https://github.com/scikit-build/scikit-build/issues/479
@@ -43,12 +72,13 @@ def main():
 
     skbuild.setup(
         name="g2o-python",
-        version="0.0.2",
+        version="0.0.3",
         url="https://github.com/miquelmassot/g2o-python",
         license="MIT",
         description="Wrapper package for G2O python bindings.",
         long_description=io.open("README.md", encoding="utf-8").read(),
         long_description_content_type="text/markdown",
+        packages=["g2opy"],
         maintainer="Miquel Massot",
         ext_modules=EmptyListWithLength(),
         install_requires=install_requires,
