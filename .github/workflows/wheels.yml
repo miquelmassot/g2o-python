@@ -5,11 +5,40 @@ on: [push, pull_request]
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
 
+    runs-on: ${{ matrix.os_dist.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os_dist: [
+          {os: ubuntu-latest, dist: cp36-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp37-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp38-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp39-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp310-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp311-manylinux_x86_64},
+          {os: macos-latest, dist: cp36-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp37-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp38-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp39-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp310-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp311-macosx_x86_64, macosarch: x86_64},
+          {os: macos-latest, dist: cp38-macosx_arm64, macosarch: arm64},
+          {os: macos-latest, dist: cp39-macosx_arm64, macosarch: arm64},
+          {os: macos-latest, dist: cp310-macosx_arm64, macosarch: arm64},
+          {os: macos-latest, dist: cp311-macosx_arm64, macosarch: arm64},
+          {os: windows-latest, dist: cp36-win_amd64},
+          {os: windows-latest, dist: cp37-win_amd64},
+          {os: windows-latest, dist: cp38-win_amd64},
+          {os: windows-latest, dist: cp39-win_amd64},
+          {os: windows-latest, dist: cp310-win_amd64},
+          {os: windows-latest, dist: cp311-win_amd64},
+          {os: windows-latest, dist: cp36-win32},
+          {os: windows-latest, dist: cp37-win32},
+        ]
+    env:
+      CIBW_BUILD: "${{ matrix.os_dist.dist }}"
+      CIBW_ARCHS_MACOS: "${{ matrix.os_dist.macosarch }}"
     steps:
       - uses: actions/checkout@v3
         with:
@@ -32,10 +61,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-
     - name: Build SDist
       run: pipx run build --sdist
-
     - uses: actions/upload-artifact@v3
       with:
         path: dist/*.tar.gz
