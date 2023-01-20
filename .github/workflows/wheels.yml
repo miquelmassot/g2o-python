@@ -82,13 +82,11 @@ jobs:
     if: ${{ always() }}
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
     steps:
     - uses: actions/download-artifact@v3
       with:
         name: artifact
         path: dist
-
     - uses: pypa/gh-action-pypi-publish@v1.5.0
       with:
         user: __token__
