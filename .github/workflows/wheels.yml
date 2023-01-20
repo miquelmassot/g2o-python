@@ -79,6 +79,7 @@ jobs:
         path: dist/*.tar.gz
 
   upload_all:
+    if: ${{ always() }}
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
     if: github.event_name == 'release' && github.event.action == 'published'
