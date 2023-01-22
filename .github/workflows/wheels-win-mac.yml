@@ -20,12 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         os_dist: [
-          {os: ubuntu-latest, dist: cp36-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp37-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp38-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp39-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp310-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp311-manylinux_x86_64},
           {os: macos-latest, dist: cp36-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp37-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp38-macosx_x86_64, macosarch: x86_64},
