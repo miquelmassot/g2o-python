@@ -1,4 +1,4 @@
-name: Wheels
+name: Wheels win-mac
 
 on:
   push:
@@ -83,5 +83,6 @@ jobs:
         path: dist
     - uses: pypa/gh-action-pypi-publish@v1.6.4
       with:
+        skip_existing: true
         user: __token__
         password: ${{ secrets.pypi_password }}
