@@ -15,4 +15,4 @@ before-build= "brew install eigen"
 before-build = "choco install eigen"
 
 [tool.cibuildwheel.linux]
-before-build = "yum install eigen3-devel"
+before-build = "yum install -y eigen3-devel"
