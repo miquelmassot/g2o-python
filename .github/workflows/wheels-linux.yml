@@ -32,6 +32,8 @@ jobs:
       CIBW_ARCHS_MACOS: "${{ matrix.os_dist.macosarch }}"
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       # Used to host cibuildwheel
       - uses: actions/setup-python@v3
       - name: Install cibuildwheel
