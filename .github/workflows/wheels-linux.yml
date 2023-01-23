@@ -1,4 +1,4 @@
-name: ManyLinux wheels
+name: Wheels linux
 
 on:
   push:
