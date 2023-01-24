@@ -1,5 +1,4 @@
-name: Wheels win-mac
-
+name: Wheels
 on:
   push:
     tags:
@@ -20,6 +19,12 @@ jobs:
       fail-fast: false
       matrix:
         os_dist: [
+          {os: ubuntu-latest, dist: cp36-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp37-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp38-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp39-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp310-manylinux_x86_64},
+          {os: ubuntu-latest, dist: cp311-manylinux_x86_64},
           {os: macos-latest, dist: cp36-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp37-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp38-macosx_x86_64, macosarch: x86_64},
@@ -58,10 +63,23 @@ jobs:
         continue-on-error: true  
         with:
           path: ./wheelhouse/*.whl
+  
+  make_sdist:
+    name: Make SDist
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Build SDist
+      run: pipx run build --sdist
+    - uses: actions/upload-artifact@v3
+      with:
+        path: dist/*.tar.gz
 
   upload_all:
     if: ${{ always() }}
-    needs: build_wheels
+    needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/download-artifact@v3
