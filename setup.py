@@ -4,22 +4,14 @@ import os.path
 import skbuild
 from skbuild import cmaker
 
-# Compiled library is at g2o/lib/g2opy.cpython-310-x86_64-linux-gnu.so
-
 
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     cmake_source_dir = "g2o"
 
     install_requires = [
-        'numpy>=1.13.3; python_version<"3.7"',
-        'numpy>=1.17.0; python_version>="3.7"',  # https://github.com/numpy/numpy/pull/13725
-        'numpy>=1.17.3; python_version>="3.8"',
-        'numpy>=1.19.3; python_version>="3.9"',
-        'numpy>=1.21.2; python_version>="3.10"',
-        'numpy>=1.19.3; python_version>="3.6" and platform_system=="Linux" and platform_machine=="aarch64"',
-        'numpy>=1.21.0; python_version<="3.9" and platform_system=="Darwin" and platform_machine=="arm64"',
-        'numpy>=1.21.4; python_version>="3.10" and platform_system=="Darwin"',
+        'numpy',
+        'scikit-build',
     ]
 
     # Fix g2o/CMakeLists.txt file, remove the lines
