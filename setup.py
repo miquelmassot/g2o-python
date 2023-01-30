@@ -43,16 +43,6 @@ def main():
     with open(os.path.join(cmake_source_dir, "CMakeLists.txt"), "w") as file:
         file.write(filedata)
 
-    # And in g2o/python/CMakeLists.txt, add
-    #   install(TARGETS g2opy LIBRARY DESTINATION g2opy)
-    # at the end of the file
-    with open(os.path.join(cmake_source_dir, "python", "CMakeLists.txt"), "r") as file:
-        filedata = file.read()
-    if "install(TARGETS g2opy LIBRARY DESTINATION g2opy)" not in filedata:
-        filedata += "\ninstall(TARGETS g2opy LIBRARY DESTINATION g2opy)"
-    with open(os.path.join(cmake_source_dir, "python", "CMakeLists.txt"), "w") as file:
-        file.write(filedata)
-
     cmake_args = [
         # See g2o/CMakeLists.txt for options and defaults
         "-DBUILD_SHARED_LIBS=OFF",
@@ -72,7 +62,7 @@ def main():
 
     skbuild.setup(
         name="g2o-python",
-        version="0.0.3",
+        version="0.0.8",
         url="https://github.com/miquelmassot/g2o-python",
         license="MIT",
         description="Wrapper package for G2O python bindings.",
