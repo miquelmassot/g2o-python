@@ -15,7 +15,7 @@ This is a wrapper of the python binding of [g2o](https://github.com/RainerKuemme
 ## How to use it in your code
 
 ```python
-from g2opy import g2opy as g2o
+import g2o
 # Your code
 
 ```
