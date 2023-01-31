@@ -14,6 +14,16 @@ def main():
         'scikit-build',
     ]
 
+    # Fix g2o/python/CMakeLists.txt file, install pybind11 to "."
+    with open(os.path.join(cmake_source_dir, "python/CMakeLists.txt"), "r") as file:
+        filedata = file.read()
+        filedata = filedata.replace(
+            "install(TARGETS g2opy LIBRARY DESTINATION g2opy)",
+            "install(TARGETS g2opy LIBRARY DESTINATION .)"
+        )
+    with open(os.path.join(cmake_source_dir, "python/CMakeLists.txt"), "w") as file:
+        file.write(filedata)
+
     # Fix g2o/CMakeLists.txt file, remove the lines
     #   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})
     #   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${g2o_LIBRARY_OUTPUT_DIRECTORY})
@@ -34,6 +44,11 @@ def main():
         )
     with open(os.path.join(cmake_source_dir, "CMakeLists.txt"), "w") as file:
         file.write(filedata)
+
+    # Add __init__.py at g2o root folder to be able to write in python:
+    #   import g2o
+    with open(os.path.join(cmake_source_dir, "__init__.py"), "w") as file:
+        file.write("from .g2opy import *  # noqa: F401")
 
     cmake_args = [
         # See g2o/CMakeLists.txt for options and defaults
@@ -60,8 +75,8 @@ def main():
         description="Wrapper package for G2O python bindings.",
         long_description=io.open("README.md", encoding="utf-8").read(),
         long_description_content_type="text/markdown",
-        packages=["g2opy"],
         maintainer="Miquel Massot",
+        packages=["g2o"],
         ext_modules=EmptyListWithLength(),
         install_requires=install_requires,
         python_requires=">=3.6",
