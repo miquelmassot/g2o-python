@@ -1,0 +1,60 @@
+{% set name = "g2o-python" %}
+{% set version = "0.0.9" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 72f29b66559d0b28a3944143de41f77839b3483a18d8720e6fe544d09781cc65	
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed .
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - cmake
+    - make  # [not win]
+    - ninja  # [win]
+    - python
+    - numpy
+    - pip
+    - eigen
+    - scikit-build
+  host:
+    - python
+    - pip
+    - "{{ compiler('cxx') }}"
+    - cmake
+    - make  # [not win]
+    - ninja  # [win]
+    - numpy
+    - eigen
+    - scikit-build
+  run:
+    - python
+    - numpy
+    - pip
+    - eigen
+    - scikit-build
+
+test:
+  imports:
+    - g2o
+
+about:
+  home: https://github.com/miquelmassot/g2o-python
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "Wrapper for g2o python bindings"
+  description: "This is a wrapper of the python binding of g2o using its branch official branch pymem."
+  dev_url: https://github.com/miquelmassot/g2o-python
+
+extra:
+  recipe-maintainers:
+    - miquelmassot
+
