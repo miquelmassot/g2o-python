@@ -13,10 +13,8 @@ on:
 jobs:
   build_wheels:
     name: Wheels on ${{ matrix.os_dist.os }} for ${{ matrix.os_dist.dist}}
-
     runs-on: ${{ matrix.os_dist.os }}
     strategy:
-      fail-fast: false
       matrix:
         os_dist: [
           {os: ubuntu-latest, dist: cp36-manylinux_x86_64},
@@ -54,13 +52,11 @@ jobs:
       - uses: actions/setup-python@v4
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.12.0
-        continue-on-error: true  
         with:
           package-dir: .
           output-dir: wheelhouse
           config-file: "{package}/pyproject.toml"
       - uses: actions/upload-artifact@v3
-        continue-on-error: true  
         with:
           path: ./wheelhouse/*.whl
   
@@ -78,7 +74,6 @@ jobs:
         path: dist/*.tar.gz
 
   upload_all:
-    if: ${{ always() }}
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
