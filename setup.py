@@ -19,7 +19,7 @@ def main():
         filedata = file.read()
         filedata = filedata.replace(
             "install(TARGETS g2opy LIBRARY DESTINATION g2opy)",
-            "install(TARGETS g2opy LIBRARY DESTINATION .)"
+            "install(TARGETS g2opy LIBRARY DESTINATION g2o)"
         )
     with open(os.path.join(cmake_source_dir, "python/CMakeLists.txt"), "w") as file:
         file.write(filedata)
