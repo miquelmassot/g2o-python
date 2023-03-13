@@ -83,7 +83,7 @@ jobs:
       with:
         name: artifact
         path: dist
-    - uses: pypa/gh-action-pypi-publish@v1.6.4
+    - uses: pypa/gh-action-pypi-publish@v1.7.1
       with:
         skip_existing: true
         user: __token__
