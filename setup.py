@@ -10,8 +10,8 @@ def main():
     cmake_source_dir = "g2o"
 
     install_requires = [
-        'numpy',
-        'scikit-build',
+        "numpy",
+        "scikit-build",
     ]
 
     # Fix g2o/python/CMakeLists.txt file, install pybind11 to "."
@@ -19,7 +19,7 @@ def main():
         filedata = file.read()
         filedata = filedata.replace(
             "install(TARGETS g2opy LIBRARY DESTINATION g2opy)",
-            "install(TARGETS g2opy LIBRARY DESTINATION g2o)"
+            "install(TARGETS g2opy LIBRARY DESTINATION g2o)",
         )
     with open(os.path.join(cmake_source_dir, "python/CMakeLists.txt"), "w") as file:
         file.write(filedata)
@@ -52,11 +52,13 @@ def main():
 
     cmake_args = [
         # See g2o/CMakeLists.txt for options and defaults
-        "-DBUILD_SHARED_LIBS=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
         "-DG2O_USE_OPENGL=OFF",
         "-DG2O_BUILD_EXAMPLES=OFF",
         "-DG2O_BUILD_APPS=OFF",
         "-DG2O_BUILD_PYTHON=ON",
+        "-DPYBIND11_FINDPYTHON=ON",
+        "-DPYBIND11_INSTALL=ON",
         "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
     ]
 
@@ -80,6 +82,7 @@ def main():
         ext_modules=EmptyListWithLength(),
         install_requires=install_requires,
         python_requires=">=3.6",
+        include_package_data=False,
         classifiers=[
             "Development Status :: 5 - Production/Stable",
             "Environment :: Console",
