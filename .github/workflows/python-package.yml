@@ -20,4 +20,4 @@ jobs:
       - uses: actions/setup-python@v4
       - name: Install the package
         run: |
-          pip install -U --user .
+          MAKEFLAGS="-j$(nproc)" pip install -U --user -v .
