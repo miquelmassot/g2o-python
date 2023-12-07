@@ -17,14 +17,10 @@ jobs:
     strategy:
       matrix:
         os_dist: [
-          {os: ubuntu-latest, dist: cp36-manylinux_x86_64},
-          {os: ubuntu-latest, dist: cp37-manylinux_x86_64},
           {os: ubuntu-latest, dist: cp38-manylinux_x86_64},
           {os: ubuntu-latest, dist: cp39-manylinux_x86_64},
           {os: ubuntu-latest, dist: cp310-manylinux_x86_64},
           {os: ubuntu-latest, dist: cp311-manylinux_x86_64},
-          {os: macos-latest, dist: cp36-macosx_x86_64, macosarch: x86_64},
-          {os: macos-latest, dist: cp37-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp38-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp39-macosx_x86_64, macosarch: x86_64},
           {os: macos-latest, dist: cp310-macosx_x86_64, macosarch: x86_64},
@@ -33,14 +29,10 @@ jobs:
           {os: macos-latest, dist: cp39-macosx_arm64, macosarch: arm64},
           {os: macos-latest, dist: cp310-macosx_arm64, macosarch: arm64},
           {os: macos-latest, dist: cp311-macosx_arm64, macosarch: arm64},
-          {os: windows-latest, dist: cp36-win_amd64},
-          {os: windows-latest, dist: cp37-win_amd64},
           {os: windows-latest, dist: cp38-win_amd64},
           {os: windows-latest, dist: cp39-win_amd64},
           {os: windows-latest, dist: cp310-win_amd64},
           {os: windows-latest, dist: cp311-win_amd64},
-          {os: windows-latest, dist: cp36-win32},
-          {os: windows-latest, dist: cp37-win32},
         ]
     env:
       CIBW_BUILD: "${{ matrix.os_dist.dist }}"
