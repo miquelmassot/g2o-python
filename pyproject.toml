@@ -9,6 +9,9 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[tool.cibuildwheel]
+before-all= "pip install numpy"
+
 [tool.cibuildwheel.macos]
 before-build= "brew install eigen"
 
@@ -16,4 +19,4 @@ before-build= "brew install eigen"
 before-build = "choco install eigen"
 
 [tool.cibuildwheel.linux]
-before-build = "yum install -y eigen3-devel"
+before-build = "yum install -y blas-devel flann-devel eigen3-devel"
