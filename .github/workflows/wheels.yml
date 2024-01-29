@@ -55,7 +55,7 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install cmake eigen
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.13.1
+        uses: pypa/cibuildwheel@v2.16.4
         env:
           CIBW_BUILD_VERBOSITY: 1
         with:
