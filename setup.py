@@ -71,7 +71,7 @@ def main():
 
     skbuild.setup(
         name="g2o-python",
-        version="0.0.14",
+        version="0.0.15",
         url="https://github.com/miquelmassot/g2o-python",
         license="MIT",
         description="Wrapper package for G2O python bindings.",
