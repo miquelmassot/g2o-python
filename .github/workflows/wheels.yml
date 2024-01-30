@@ -39,51 +39,37 @@ jobs:
           {os: windows-latest, dist: cp39-win_amd64},
           {os: windows-latest, dist: cp310-win_amd64},
           {os: windows-latest, dist: cp311-win_amd64},
-          {os: windows-latest, dist: cp36-win32},
-          {os: windows-latest, dist: cp37-win32},
         ]
     env:
       CIBW_BUILD: "${{ matrix.os_dist.dist }}"
       CIBW_ARCHS_MACOS: "${{ matrix.os_dist.macosarch }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - uses: actions/setup-python@v4
-      - name: Install dependencies on Ubuntu
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt update
-          sudo apt install libeigen3-dev qtdeclarative5-dev qt5-qmake libqglviewer-dev-qt5 libsuitesparse-dev lcov libspdlog-dev
-      - name: Install dependencies on Windows
-        if: runner.os == 'Windows'
-        run: |
-          vcpkg --triplet x64-windows install eigen3
-      - name: Install dependencies on macOS
-        if: runner.os == 'macOS'
-        run: brew install cmake eigen
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.1
+        uses: pypa/cibuildwheel@v2.16.4
         env:
           CIBW_BUILD_VERBOSITY: 1
         with:
           package-dir: .
           output-dir: wheelhouse
           config-file: "{package}/pyproject.toml"
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./wheelhouse/*.whl
-  
+
   make_sdist:
     name: Make SDist
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: recursive
     - name: Build SDist
       run: pipx run build --sdist
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         path: dist/*.tar.gz
 
@@ -91,11 +77,11 @@ jobs:
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: artifact
         path: dist
-    - uses: pypa/gh-action-pypi-publish@v1.8.1
+    - uses: pypa/gh-action-pypi-publish@v1.8.11
       with:
         skip_existing: true
         user: __token__
