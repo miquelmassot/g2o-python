@@ -19,8 +19,7 @@ import g2o
 # Your code
 
 ```
-
-More examples [available here](https://github.com/RainerKuemmerle/g2o/tree/pymem/python/examples).
+Examples are available at a separate repository called [g2o-python-examples](https://github.com/miquelmassot/g2o-python-examples). More examples [available here](https://github.com/RainerKuemmerle/g2o/tree/pymem/python/examples).
 
 
 ## How to install
