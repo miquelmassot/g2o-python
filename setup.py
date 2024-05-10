@@ -61,6 +61,7 @@ def main():
         "-DPYBIND11_FINDPYTHON=ON",
         "-DPYBIND11_INSTALL=ON",
         "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
+        "-DCMAKE_OSX_DEPLOYMENT_TARGET=10.15",
     ]
 
     # https://github.com/scikit-build/scikit-build/issues/479
