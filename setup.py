@@ -11,6 +11,7 @@ def main():
 
     install_requires = [
         "numpy",
+        "scipy",
         "scikit-build",
     ]
 
