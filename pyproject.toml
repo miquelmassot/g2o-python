@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 before-all = "pip install numpy scipy"
 
 [tool.cibuildwheel.macos]
-before-build = "brew install eigen"
+before-build = "brew install eigen cmake ninja"
 
 [tool.cibuildwheel.windows]
-before-build = "choco install eigen"
+before-build = "choco install eigen cmake ninja"
 
 [tool.cibuildwheel.linux]
-before-build = "yum install -y blas-devel flann-devel eigen3-devel"
+before-build = "yum install -y blas-devel flann-devel eigen3-devel cmake ninja"
